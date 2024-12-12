@@ -1,14 +1,14 @@
 // domain Public Suffix List library start
-const dataDomain = "nextjs-rust-six.vercel.app";
+const dataDomain = "lb-next-sub.vercel.app";
 const dataScriptHost = "https://newcookiebucket.s3.us-east-2.amazonaws.com";
 const dataWebApp =
   "https://playground-master-privacy-ops.lightbeamsecurity.com";
 const hostUrl = "https://newcookiebucket.s3.us-east-2.amazonaws.com";
-const ccVersion = "2";
-const domainId = "363cc9bc-7ee8-43de-bd64-4238ee416ba2";
-const jsHash = "3e9cf31";
+const ccVersion = "16";
+const domainId = "c0f282de-ebf1-400a-b916-17f49c65019b";
+const jsHash = "88a5092";
 const cssHash = "506a3a5";
-const domainHash = "9880af2";
+const domainHash = "f12f7e1";
 
 !(function (a) {
   "object" == typeof exports && "undefined" != typeof module
@@ -1537,7 +1537,6 @@ const domainHash = "9880af2";
             "venezia.it",
             "venice.it",
             "verbania.it",
-            "vercelli.it",
             "verona.it",
             "vi.it",
             "vibo-valentia.it",
@@ -9334,8 +9333,6 @@ const domainHash = "9880af2";
             "dnsupdate.info",
             "lib.de.us",
             "2038.io",
-            "vercel.app",
-            "vercel.dev",
             "now.sh",
             "router.management",
             "v-info.info",
@@ -9782,6 +9779,18 @@ var getLbMainDomain = () => {
   return psl?.get(window.location.hostname) || window.location.hostname;
 };
 
+const getLbEssentialsWhiteList = () => {
+  return [
+    "^/",
+    "^./",
+    window.location.host,
+    getLbMainDomain(),
+    "." + getLbMainDomain(),
+    ...(dataWebApp ? [dataWebApp.replace(/https?:\/\//i, "")] : []),
+    ...(dataScriptHost ? [dataScriptHost.replace(/https?:\/\//i, "")] : []),
+  ];
+};
+
 var getLbCookies = (name) => {
   const value = `; ${document.cookie}`;
   const parts = value.split(`; ${name}=`);
@@ -9811,15 +9820,7 @@ var setLbCookies = ({ name, value = "", shareCookies = false }) => {
   // detect essentials that must NOT be blocked
   const root = document.getElementById("lb-cookie-consent");
 
-  const essentialsWhiteList = [
-    "^/",
-    "^./",
-    window.location.host,
-    getLbMainDomain(),
-    "." + getLbMainDomain(),
-    ...(dataWebApp ? [dataWebApp.replace(/https?:\/\//i, "")] : []),
-    ...(dataScriptHost ? [dataScriptHost.replace(/https?:\/\//i, "")] : []),
-  ];
+  const essentialsWhiteList = getLbEssentialsWhiteList();
 
   // check whether show both banner and pref center or pref center only
   const isLbPrefCenter =

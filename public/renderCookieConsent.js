@@ -1445,17 +1445,7 @@ var renderCookieConsent = async () => {
   };
 
   // init
-  const webAppDomainName = dataWebApp?.replace(/https?:\/\//i, "") || "";
-  const s3DomainName = dataScriptHost?.replace(/https?:\/\//i, "") || "";
-  const essentialsWhiteList = [
-    "^/",
-    "^./",
-    window.location.host,
-    getLbMainDomain(),
-    "." + getLbMainDomain(),
-    ...(s3DomainName ? [s3DomainName] : []),
-    ...(webAppDomainName ? [webAppDomainName] : []),
-  ];
+  const essentialsWhiteList = getLbEssentialsWhiteList();
 
   const init = () => {
     if (domain) {

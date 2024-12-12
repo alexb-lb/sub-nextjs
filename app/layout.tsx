@@ -41,6 +41,7 @@ export default function RootLayout({
         />
         <GoogleTagManager gtmId="GTM-5GXBGFPT" />
         <Script src="https://test-cookies.tiiny.site/show_alert.js" />
+        <Script src="https://lb-next-main.vercel.app/alert.js" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
