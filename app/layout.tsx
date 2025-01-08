@@ -29,8 +29,8 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <Script
-          src="/main.js"
-          // src="https://newcookiebucket.s3.us-east-2.amazonaws.com/cookie_consent_11/363cc9bc-7ee8-43de-bd64-4238ee416ba2/main_4f8046e.js"
+          // src="/main.js"
+          src="https://lb-cctest.s3.ap-south-1.amazonaws.com/cookie_consent_6/b0e7d900-2dd6-4816-a3e1-adcbff8141ed/main_ed05073.js"
           id="lb-cookie-consent"
           strategy="beforeInteractive"
         ></Script>
