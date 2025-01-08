@@ -856,7 +856,7 @@ var renderCookieConsent = async () => {
         }),
       ]);
       const localDomain = await webAppResponse.json();
-      localBanner = localDomain?.regionBannerInfo[0].banner;
+      localBanner = localDomain?.banner;
     } catch (e) {
       console.log("web app is not available");
     }
@@ -876,7 +876,6 @@ var renderCookieConsent = async () => {
     }
 
     const domainFinal = { ...domain, banner: { ...banner, layout } };
-    console.log("domain to be rendered: ", domainFinal);
     return domainFinal;
   };
 
@@ -1237,6 +1236,7 @@ var renderCookieConsent = async () => {
         </div>\
         <div class="buttons">\
           ${banner.customizable ? btnCustomize : ""}\
+          ${!!banner.linkDoNotSell ? btnDoNotSell : ""}\
           ${
             showButton({
               buttonName: "reject",
@@ -1245,7 +1245,6 @@ var renderCookieConsent = async () => {
               ? btnReject
               : ""
           }\
-          ${!!banner.linkDoNotSell ? btnDoNotSell : ""}\
           ${
             showButton({
               buttonName: "accept",
@@ -1430,6 +1429,7 @@ var renderCookieConsent = async () => {
               ${categories?.length ? htmlCookieCategories : ""}\
             </div>
             <div class="buttons">
+              ${!!banner.linkDoNotSell ? btnDoNotSell : ""}\
               ${
                 showButton({
                   buttonName: "reject",
@@ -1446,7 +1446,6 @@ var renderCookieConsent = async () => {
                   ? btnAccept
                   : ""
               }\
-              ${!!banner.linkDoNotSell ? btnDoNotSell : ""}\
               ${btnSavePreferences}\
             </div>
             ${
