@@ -1,14 +1,14 @@
 // domain Public Suffix List library start
 const dataDomain = "lb-next-sub.vercel.app";
-const dataScriptHost = "https://newcookiebucket.s3.us-east-2.amazonaws.com";
-const dataWebApp =
-  "https://playground-master-privacy-ops.lightbeamsecurity.com";
-const hostUrl = "https://newcookiebucket.s3.us-east-2.amazonaws.com";
-const ccVersion = "16";
-const domainId = "c0f282de-ebf1-400a-b916-17f49c65019b";
-const jsHash = "88a5092";
-const cssHash = "506a3a5";
-const domainHash = "f12f7e1";
+const dataScriptHost = "https://lb-cctest.s3.ap-south-1.amazonaws.com";
+const dataWebApp = "https://lightbeam-qa-dsr.lightbeamsecurity.com";
+const hostUrl = "https://lb-cctest.s3.ap-south-1.amazonaws.com";
+const ccVersion = "6";
+const domainId = "b0e7d900-2dd6-4816-a3e1-adcbff8141ed";
+const jsHash = "872712c";
+const cssHash = "884d8ce";
+const domainHash = "9047852";
+const customWhiteListUrls = [];
 
 !(function (a) {
   "object" == typeof exports && "undefined" != typeof module

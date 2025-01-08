@@ -825,20 +825,59 @@ var renderCookieConsent = async () => {
 
   // API requests
   const fetchDomainInfo = async () => {
-    // const response = await fetch(
-    //   `${dataScriptHost}/cookie_consent_${ccVersion}/${domainId}/domain_config_${domainHash}.json`
-    // );
-    // const domain = response.domain;
-    const domain = mockDomain;
-    domain.banner = domain.banner || {};
-    domain.banner.layout = {};
+    const globalResponse = await fetch(
+      `${dataScriptHost}/cookie_consent_${ccVersion}/${domainId}/domain_config_${domainHash}.json`
+    );
+    const globalDomain = await globalResponse.json();
+
+    // get global banner
+    const globalBanner = !!globalDomain?.regionBannerInfo.length
+      ? globalDomain?.regionBannerInfo[0].banner
+      : globalDomain?.banner;
+
+    // get location-based banner
+    let localBanner;
     try {
-      domain.banner.layout = JSON.parse(domain.banner.rawJSON);
+      const MAX_PENDING_TIME_MS = 2000;
+      const controller = new AbortController();
+
+      const webAppResponse = await Promise.race([
+        fetch(
+          `${dataWebApp}/api/cookie-consent/domain?domainName=${dataDomain}`,
+          {
+            signal: controller.signal,
+          }
+        ),
+        new Promise((resolve) => {
+          setTimeout(() => {
+            resolve(JSON.stringify({ banner: null }));
+            controller.abort();
+          }, MAX_PENDING_TIME_MS);
+        }),
+      ]);
+      const localDomain = await webAppResponse.json();
+      localBanner = localDomain?.regionBannerInfo[0].banner;
+    } catch (e) {
+      console.log("web app is not available");
+    }
+
+    const banner = localBanner || globalBanner;
+    const domain = {
+      ...globalDomain,
+      banner: { ...banner, layout: {} },
+    };
+
+    let layout = {};
+
+    try {
+      layout = JSON.parse(banner.rawJSON);
     } catch (e) {
       return console.log("Cannot parse banner JSON");
     }
 
-    return domain;
+    const domainFinal = { ...domain, banner: { ...banner, layout } };
+    console.log("domain to be rendered: ", domainFinal);
+    return domainFinal;
   };
 
   /* API to GET saved preferences */
