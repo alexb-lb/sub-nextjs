@@ -1,14 +1,20 @@
 // domain Public Suffix List library start
 const dataDomain = "lb-next-sub.vercel.app";
 const dataScriptHost = "https://lb-cctest.s3.ap-south-1.amazonaws.com";
-const dataWebApp = "https://lightbeam-qa-dsr.lightbeamsecurity.com";
+const dataWebApp =
+  "https://playground-master-privacy-ops.lightbeamsecurity.com";
 const hostUrl = "https://lb-cctest.s3.ap-south-1.amazonaws.com";
-const ccVersion = "6";
-const domainId = "b0e7d900-2dd6-4816-a3e1-adcbff8141ed";
-const jsHash = "872712c";
+const ccVersion = "5";
+const domainId = "a36c6a9c-bbdf-4d30-bc4c-b33134dad41c";
+const jsHash = "0335b3f";
 const cssHash = "884d8ce";
-const domainHash = "9047852";
-const customWhiteListUrls = [];
+const domainHash = "16061db";
+const customWhiteListUrls = [
+  "google.com",
+  "lol.com",
+  "puhpuh.io",
+  "test-cookies.tiiny.site",
+];
 
 !(function (a) {
   "object" == typeof exports && "undefined" != typeof module
@@ -9788,6 +9794,7 @@ const getLbEssentialsWhiteList = () => {
     "." + getLbMainDomain(),
     ...(dataWebApp ? [dataWebApp.replace(/https?:\/\//i, "")] : []),
     ...(dataScriptHost ? [dataScriptHost.replace(/https?:\/\//i, "")] : []),
+    // ...customWhiteListUrls,
   ];
 };
 
