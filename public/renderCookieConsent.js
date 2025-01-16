@@ -733,6 +733,17 @@ var renderCookieConsent = async () => {
   };
 
   /**
+   * Unblock essentials after page change
+   */
+  const enableEssentials = () => {
+    let domainsAccepted = essentialsWhiteList || [];
+    domainsAccepted.forEach((domain) => {
+      const regex = new RegExp(domain);
+      unblockSources(regex);
+    });
+  };
+
+  /**
    * Calculates user accepted/rejected consents taking into account mandatory essentials
    * @param {props} { isDoNotSell?: boolean, isSavePreferences?: boolean }
    * @returns
@@ -1124,9 +1135,7 @@ var renderCookieConsent = async () => {
     label = "",
     checked = false,
     disabled = false,
-    styles,
   }) => {
-    console.log("styles", styles);
     return `\
       <div class="lb-toggle-container lb-switch" \
           data-category-id="${id}" \
@@ -1207,58 +1216,58 @@ var renderCookieConsent = async () => {
           </a>`
       : ``;
 
-    document.body.insertAdjacentHTML(
-      "beforeend",
-      `\
-    <div class="\
-          cookie-consent-banner-container \
-          ${banner?.layout.type} \
-          ${banner?.layout.position?.join(" ")} \
-          ${showPreferencesOnly ? " hidden" : ""} \
-          ${isMobile() ? " mobile-view" : ""} \
-      "
-      id="lb-cookie-consent-banner">\
-      <div class="overlay"></div>
-      <div \
-        class="main-banner"\
-        style="background-color: #${banner?.layout.banner?.backgroundColor};\
-               border-color: #${banner?.layout.banner?.borderColor};"\
-      >\
-      <div class="main-banner-wrapper">
-        <div class="main-banner-body">\
-          <div\
-            class="policy-text lb-scrollbar"\
-            style="color: #${banner?.layout?.banner?.bodyTextColor};"\
-          >\
-            ${banner?.layout.banner?.body}\
+    const htmlBanner = `\
+      <div class="\
+            cookie-consent-banner-container \
+            ${banner?.layout.type} \
+            ${banner?.layout.position?.join(" ")} \
+            ${showPreferencesOnly ? " hidden" : ""} \
+            ${isMobile() ? " mobile-view" : ""} \
+        "
+        id="lb-cookie-consent-banner">\
+        <div class="overlay"></div>
+        <div \
+          class="main-banner"\
+          style="background-color: #${banner?.layout.banner?.backgroundColor};\
+                 border-color: #${banner?.layout.banner?.borderColor};"\
+        >\
+        <div class="main-banner-wrapper">
+          <div class="main-banner-body">\
+            <div\
+              class="policy-text lb-scrollbar"\
+              style="color: #${banner?.layout?.banner?.bodyTextColor};"\
+            >\
+              ${banner?.layout.banner?.body}\
+            </div>\
+            ${policyUrl}\
           </div>\
-          ${policyUrl}\
+          <div class="buttons">\
+            ${banner.customizable ? btnCustomize : ""}\
+            ${!!banner.linkDoNotSell ? btnDoNotSell : ""}\
+            ${
+              showButton({
+                buttonName: "reject",
+                consentType: banner.consentType,
+              })
+                ? btnReject
+                : ""
+            }\
+            ${
+              showButton({
+                buttonName: "accept",
+                consentType: banner.consentType,
+              })
+                ? btnAccept
+                : ""
+            }\
+          </div>\
+          </div>
         </div>\
-        <div class="buttons">\
-          ${banner.customizable ? btnCustomize : ""}\
-          ${!!banner.linkDoNotSell ? btnDoNotSell : ""}\
-          ${
-            showButton({
-              buttonName: "reject",
-              consentType: banner.consentType,
-            })
-              ? btnReject
-              : ""
-          }\
-          ${
-            showButton({
-              buttonName: "accept",
-              consentType: banner.consentType,
-            })
-              ? btnAccept
-              : ""
-          }\
-        </div>\
-        </div>
-      </div>\
-    </div>
-  `
-    );
+      </div>
+    `;
+
+    // document.getElementById("lb-cookie-consent-banner")?.remove();
+    document.body.insertAdjacentHTML("beforeend", htmlBanner);
   };
 
   const renderPreferences = async (banner, showPreferencesOnly) => {
@@ -1460,7 +1469,7 @@ var renderCookieConsent = async () => {
     </div>\
     `;
 
-    // return htmlPreferences
+    // document.getElementById("cookie-consent-banner-preferences")?.remove();
     document.body.insertAdjacentHTML("beforeend", htmlPreferences);
   };
 
@@ -1489,6 +1498,7 @@ var renderCookieConsent = async () => {
     if (domain) {
       injectHtml(domain);
       initHandlers(domain);
+      // enableEssentials(); // unblock essentials on page change
     } else {
       setTimeout(() => init(), 100);
     }
@@ -1496,4 +1506,8 @@ var renderCookieConsent = async () => {
 
   domain = await fetchDomainInfo();
   init();
+
+  // window.navigation.addEventListener("navigate", () => {
+  //   init();
+  // });
 };

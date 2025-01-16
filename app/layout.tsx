@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Script from "next/script";
 import { GoogleTagManager } from "@next/third-parties/google";
+import Link from "next/link";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -29,8 +30,9 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <Script
-          src="/main.js"
-          // src="https://lb-cctest.s3.ap-south-1.amazonaws.com/cookie_consent_25/b0e7d900-2dd6-4816-a3e1-adcbff8141ed/main_aaddbb4.js"
+          // src="/main.js"
+          data-preferences-only="true"
+          src="https://lb-cctest.s3.ap-south-1.amazonaws.com/cookie_consent_6/a36c6a9c-bbdf-4d30-bc4c-b33134dad41c/main_0ef337d.js"
           id="lb-cookie-consent"
           strategy="beforeInteractive"
         ></Script>
@@ -46,6 +48,13 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <div className="menu">
+          <Link href="/">Main</Link>
+          &nbsp;
+          <Link href="/about">About</Link>
+          &nbsp;
+          <Link href="/contacts">Contacts</Link>
+        </div>
         {children}
       </body>
     </html>
