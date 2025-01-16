@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Script from "next/script";
 import { GoogleTagManager } from "@next/third-parties/google";
+import Link from "next/link";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -46,6 +47,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <div>
+          <Link href="/">Main</Link>
+          <Link href="/about">About</Link>
+          <Link href="/contacts">Contacts</Link>
+        </div>
         {children}
       </body>
     </html>
