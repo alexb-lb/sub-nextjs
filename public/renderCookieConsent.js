@@ -636,7 +636,7 @@ var renderCookieConsent = async () => {
             cookie-consent-banner-container \
             ${banner?.layout.type} \
             ${banner?.layout.position?.join(" ")} \
-            ${showPreferencesOnly ? " hidden" : ""} \
+            ${!banner.toShowBanner || showPreferencesOnly ? " hidden" : ""} \
             ${isMobile() ? " mobile-view" : ""} \
         "
         id="lb-cookie-consent-banner">\
