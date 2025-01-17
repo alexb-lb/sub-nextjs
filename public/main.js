@@ -1,16 +1,14 @@
 // domain Public Suffix List library start
-// domain Public Suffix List library start
 const dataDomain = "lb-next-sub.vercel.app";
 const dataScriptHost = "https://lb-cctest.s3.ap-south-1.amazonaws.com";
-const dataWebApp =
-  "https://playground-master-privacy-ops.lightbeamsecurity.com";
+const dataWebApp = "http://35.196.131.96:30001";
 const hostUrl = "https://lb-cctest.s3.ap-south-1.amazonaws.com";
-const ccVersion = "6";
-const domainId = "a36c6a9c-bbdf-4d30-bc4c-b33134dad41c";
-const jsHash = "0335b3f";
+const ccVersion = "41";
+const domainId = "62c05ba7-a0c1-4131-a1c8-69b5b02092d2";
+const jsHash = "c6b0455";
 const cssHash = "884d8ce";
-const domainHash = "9c000d6";
-const customWhiteListUrls = ["test-cookies.tiiny.site"];
+const domainHash = "1e9110a";
+const customWhiteListUrls = [];
 
 !(function (a) {
   "object" == typeof exports && "undefined" != typeof module
@@ -1539,6 +1537,7 @@ const customWhiteListUrls = ["test-cookies.tiiny.site"];
             "venezia.it",
             "venice.it",
             "verbania.it",
+            "vercelli.it",
             "verona.it",
             "vi.it",
             "vibo-valentia.it",
@@ -9335,6 +9334,8 @@ const customWhiteListUrls = ["test-cookies.tiiny.site"];
             "dnsupdate.info",
             "lib.de.us",
             "2038.io",
+            "vercel.app",
+            "vercel.dev",
             "now.sh",
             "router.management",
             "v-info.info",
@@ -9822,7 +9823,6 @@ var setLbCookies = ({ name, value = "", shareCookies = false }) => {
 (function () {
   // detect essentials that must NOT be blocked
   const root = document.getElementById("lb-cookie-consent");
-
   const essentialsWhiteList = getLbEssentialsWhiteList();
 
   // check whether show both banner and pref center or pref center only
