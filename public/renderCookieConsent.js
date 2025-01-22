@@ -792,7 +792,7 @@ var renderCookieConsent = async () => {
       );
 
       const htmlCaret = `<div class="icon-box">${SVG_CARET_RIGHT}</div>`;
-      const htmlDescription = `<div class="lb-row category-description">${category?.description}</div>`;
+      const htmlDescription = `<div class="lb-row category-description" style="color: #${banner?.layout?.preferences?.category?.colorDescription}">${category?.description}</div>`;
 
       const html = `\
       <div class="category ${payload.checked ? "accepted" : ""}" id="${
@@ -874,7 +874,7 @@ var renderCookieConsent = async () => {
               ${btnSavePreferences}\
             </div>
             ${
-              banner.layout.enableLightbeamBranding
+              domain.enableLightbeamBranding
                 ? `<a href="https://www.lightbeam.ai/" target="_blank" class="lb-powered-by-container">
                       <p class="lb-powered-by-text">Powered by</p>
                       <img src="https://lb-common.s3.ap-south-1.amazonaws.com/lb-logo.png" alt="lb-logo" class="lb-powered-by-logo" />
@@ -902,9 +902,26 @@ var renderCookieConsent = async () => {
       ?.classList.add("hidden");
   };
 
+  const setCSSVariables = (banner) => {
+    document.documentElement.setAttribute(
+      "style",
+      `--lb-checkbox-color-always-on: #${
+        banner?.layout?.preferences?.category?.checkboxColorAlwaysOn || "D1D5DA"
+      };
+      --lb-checkbox-color-on: #${
+        banner?.layout?.preferences?.category?.checkboxColorOn || "333333"
+      };
+      --lb-checkbox-color-off: #${
+        banner?.layout?.preferences?.category?.checkboxColorOff || "FFFFFF"
+      };
+      `
+    );
+  };
+
   // blockers / unblockers
   const injectHtml = (domain) => {
     const item = getLbCookies(LB_LOCAL_STORAGE_KEY);
+    setCSSVariables(domain.banner);
     renderPreferences(domain.banner);
     if (!item) {
       renderBanner(domain.banner, showPreferences);
