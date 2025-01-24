@@ -32,7 +32,7 @@ export default function RootLayout({
         <Script
           // src="/main.js"
           // data-preferences-only="true"
-          src="https://lb-cctest.s3.ap-south-1.amazonaws.com/cookie_consent_51/678fa100-7348-4685-b161-d0f09a7b2ed9/main_58b79fc.js"
+          src="https://lb-cctest.s3.ap-south-1.amazonaws.com/cookie_consent_20/199ba42a-49cc-40cf-80cb-a10a64c488f2/main_62f6be2.js"
           id="lb-cookie-consent"
           strategy="beforeInteractive"
         ></Script>

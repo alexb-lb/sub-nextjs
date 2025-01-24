@@ -3,11 +3,11 @@ const dataDomain = "lb-next-sub.vercel.app";
 const dataScriptHost = "https://lb-cctest.s3.ap-south-1.amazonaws.com";
 const dataWebApp = "http://35.196.131.96:30001";
 const hostUrl = "https://lb-cctest.s3.ap-south-1.amazonaws.com";
-const ccVersion = "46";
-const domainId = "62c05ba7-a0c1-4131-a1c8-69b5b02092d2";
+const ccVersion = "73";
+const domainId = "37a790c4-d452-44e4-86d8-e8f35a7289cb";
 const jsHash = "c6b0455";
 const cssHash = "884d8ce";
-const domainHash = "9384aad";
+const domainHash = "660abef";
 const customWhiteListUrls = [];
 
 !(function (a) {

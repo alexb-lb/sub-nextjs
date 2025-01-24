@@ -5,6 +5,7 @@ var renderCookieConsent = async () => {
   const showPreferences = root?.getAttribute("data-preferences-only") || "";
   const VISITOR_ID = "_lb_fp";
   let domain;
+  let enableLightbeamBranding = true; // show logo by default
 
   const cookieConsentTypes = {
     accept: "accept",
@@ -292,6 +293,7 @@ var renderCookieConsent = async () => {
       ]);
       const localDomain = await webAppResponse.json();
       localBanner = localDomain?.banner;
+      enableLightbeamBranding = localDomain.enableLightbeamBranding;
     } catch (e) {
       console.log("web app is not available");
     }
@@ -874,7 +876,7 @@ var renderCookieConsent = async () => {
               ${btnSavePreferences}\
             </div>
             ${
-              domain.enableLightbeamBranding
+              enableLightbeamBranding
                 ? `<a href="https://www.lightbeam.ai/" target="_blank" class="lb-powered-by-container">
                       <p class="lb-powered-by-text">Powered by</p>
                       <img src="https://lb-common.s3.ap-south-1.amazonaws.com/lb-logo.png" alt="lb-logo" class="lb-powered-by-logo" />
