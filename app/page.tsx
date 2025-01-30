@@ -1,10 +1,20 @@
 "use client";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 export default function Home() {
+  const router = useRouter();
+
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <h1>SUB-DOMAIN OF LB-NEXT-MAIN.VERCEL.APP</h1>
       <h3>some content...</h3>
+      <div className="menu">
+          <button onClick={() => router.push('/')}>Home</button>
+          &nbsp;
+          <button onClick={() => router.push('/about')}>About</button>
+          &nbsp;
+          <button onClick={() => router.push('/contacts')}>Contacts</button>
+      </div>
       <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
         <button
           className="footer-item lb-preferences-center-trigger"

@@ -190,3 +190,7 @@ if (document.readyState === "loading") {
   // DOMContentLoaded has already fired
   initCookieConsent();
 };
+
+// window.navigation.addEventListener("navigate", () => {
+//   window.renderCookieConsent && window.renderCookieConsent();
+// });

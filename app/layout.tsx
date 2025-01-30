@@ -30,9 +30,9 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <Script
-          src="/main.js"
+          // src="/main.js"
           // data-preferences-only="true"
-          // src="https://lb-cctest.s3.ap-south-1.amazonaws.com/cookie_consent_20/199ba42a-49cc-40cf-80cb-a10a64c488f2/main_62f6be2.js"
+          src="https://lb-cctest.s3.ap-south-1.amazonaws.com/cookie_consent_31/0d7a6001-c2b9-4924-929a-e09b8dfc17cf/main_9771a6a.js"
           id="lb-cookie-consent"
           strategy="beforeInteractive"
         />
@@ -41,20 +41,13 @@ export default function RootLayout({
           type="text/javascript"
           strategy="beforeInteractive"
         />
-        <GoogleTagManager gtmId="GTM-5GXBGFPT" />
+        {/* <GoogleTagManager gtmId="GTM-5GXBGFPT" /> */}
         <Script src="https://test-cookies.tiiny.site/show_alert.js" />
         <Script src="https://lb-next-main.vercel.app/alert.js" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="menu">
-          <Link href="/">Main</Link>
-          &nbsp;
-          <Link href="/about">About</Link>
-          &nbsp;
-          <Link href="/contacts">Contacts</Link>
-        </div>
         {children}
       </body>
     </html>
