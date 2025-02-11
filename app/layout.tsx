@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Script from "next/script";
-import { GoogleTagManager } from "@next/third-parties/google";
-import Link from "next/link";
+// import { GoogleTagManager } from "@next/third-parties/google";
+// import Link from "next/link";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -32,7 +32,7 @@ export default function RootLayout({
         <Script
           // src="/main.js"
           // data-preferences-only="true"
-          src="https://lb-cctest.s3.ap-south-1.amazonaws.com/cookie_consent_31/0d7a6001-c2b9-4924-929a-e09b8dfc17cf/main_9771a6a.js"
+          src="https://lb-cctest.s3.ap-south-1.amazonaws.com/cookie_consent_8/fdccae77-3a08-41fa-bac4-cf59166f132a/main_2ac3a05.js"
           id="lb-cookie-consent"
           strategy="beforeInteractive"
         />
